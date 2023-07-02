@@ -29,7 +29,7 @@ def give_ext(inp):
         prompt=prompt,
         temperature=0.5,
         minTokens=1,
-        maxTokens=256,
+        maxTokens=600,
         numResults=10,
     )
 
@@ -46,3 +46,4 @@ st.write(
 inp = st.text_area("Enter your description of your problem here", height=100)
 st.button("Suggest", on_click=give_ext(inp))
 st.write(f"Answer: {st.session_state.output}")
+
