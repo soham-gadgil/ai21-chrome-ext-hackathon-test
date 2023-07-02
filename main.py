@@ -29,7 +29,7 @@ def give_ext(inp):
         prompt=prompt,
         temperature=0.5,
         minTokens=1,
-        maxTokens=600,
+        maxTokens=700,
         numResults=10,
     )
 
