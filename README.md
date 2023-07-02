@@ -12,22 +12,31 @@ This is a starter project that will help you getting started with AI21 Labs API 
 ## Clone repo
 
 ```
-https://github.com/lablab-ai/ai21-streamlit-boilerplate
+git clone https://github.com/soham-gadgil/ai21-chrome-ext-hackathon-test.git
 ```
 
 ## change into folder
 
 ```
-cd ai21-streamlit-boilerplate
+cd ai21-chrome-ext-hackathon-test
 ```
 
 ## Create virtual environment
 
+```
+python -m venv venv
+```
+
+## Activate virtual environment
+
+```
+source venv/bin/activate
+```
 
 ## Install dependencies
 
 ```
-pip install -U ai21 streamlit python-dotenv
+pip install -r requirements.txt
 ```
 
 ## Run the Application
