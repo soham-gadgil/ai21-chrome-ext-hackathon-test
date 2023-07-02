@@ -4,6 +4,8 @@ import ai21
 import streamlit as st
 from dotenv import load_dotenv
 
+print("test")
+
 # Load secrets
 load_dotenv()
 
