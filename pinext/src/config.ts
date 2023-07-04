@@ -26,7 +26,6 @@ export enum Theme {
 
 export enum Language {
   English = 'english',
-  Chinese = 'chinese',
   German = 'german'
 }
 
@@ -49,9 +48,9 @@ export async function updateUserConfig(updates: Partial<UserConfig>) {
 }
 
 export enum ProviderType {
-  J2ULTRA = 'j2-ultra',
-  J2MID = 'j2-mid',
-  J2LIGHT = 'j2-light'
+  J2ULTRA = 'ultra',
+  J2MID = 'mid',
+  J2LIGHT = 'light'
 }
 
 interface J2ProviderConfig {
