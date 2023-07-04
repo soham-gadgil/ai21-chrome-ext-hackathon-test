@@ -16,12 +16,12 @@ async function loadModels(): Promise<string[]> {
 
 const ConfigPanel: FC<ConfigProps> = ({ config, models }) => {
   const [tab, setTab] = useState<ProviderType>(config.provider)
-  const { bindings: apiKeyBindings } = useInput(config.configs[ProviderType.J2ULTRA]?.apiKey ?? '')
-  const [model, setModel] = useState(config.configs[ProviderType.J2ULTRA]?.model ?? models[0])
+  const { bindings: apiKeyBindings } = useInput(config.configs[ProviderType.J2LIGHT]?.apiKey ?? '')
+  const [model, setModel] = useState(config.configs[ProviderType.J2LIGHT]?.model ?? models[0])
   const { setToast } = useToasts()
 
   const save = useCallback(async () => {
-    if (tab === ProviderType.GPT3) {
+    if (tab === ProviderType.J2LIGHT) {
       if (!apiKeyBindings.value) {
         alert('Please enter your AI21 API key')
         return
@@ -32,7 +32,7 @@ const ConfigPanel: FC<ConfigProps> = ({ config, models }) => {
       }
     }
     await saveProviderConfigs(tab, {
-      [ProviderType.J2ULTRA]: {
+      [ProviderType.J2LIGHT]: {
         model,
         apiKey: apiKeyBindings.value,
       },
@@ -46,7 +46,7 @@ const ConfigPanel: FC<ConfigProps> = ({ config, models }) => {
         <Tabs.Item label="Jurassic 2 webapp" value={ProviderType.J2}>
           The API that powers Jurassic 2 webapp, free, but sometimes unstable
         </Tabs.Item>
-        <Tabs.Item label="AI21 API" value={ProviderType.J2ULTRA}>
+        <Tabs.Item label="AI21 API" value={ProviderType.J2LIGHT}>
           <div className="flex flex-col gap-2">
             <span>
               AI21 official API, more stable,{' '}

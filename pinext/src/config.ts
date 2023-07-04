@@ -8,14 +8,14 @@ export enum TriggerMode {
 }
 
 export const TRIGGER_MODE_TEXT = {
-  [TriggerMode.Always]: { title: 'Always', desc: 'Jurassic 2 - Ultra is queried on every search' },
+  [TriggerMode.Always]: { title: 'Always', desc: 'Jurassic 2 is queried on every search' },
   [TriggerMode.QuestionMark]: {
     title: 'Question Mark',
     desc: 'When your query ends with a question mark (?)',
   },
   [TriggerMode.Manually]: {
     title: 'Manually',
-    desc: 'Jurassic 2 - Ultra queried when you manually click a button',
+    desc: 'Jurassic 2 queried when you manually click a button',
   },
 }
 
@@ -27,6 +27,7 @@ export enum Theme {
 export enum Language {
   English = 'english',
   Chinese = 'chinese',
+  German = 'german'
 }
 
 const userConfigWithDefaultValue = {
@@ -48,11 +49,12 @@ export async function updateUserConfig(updates: Partial<UserConfig>) {
 }
 
 export enum ProviderType {
-  J2 = 'j2',
-  J2ULTRA = 'j2ultra',
+  J2ULTRA = 'j2-ultra',
+  J2MID = 'j2-mid',
+  J2LIGHT = 'j2-light'
 }
 
-interface J2ULTRAProviderConfig {
+interface J2ProviderConfig {
   model: string
   apiKey: string
 }
@@ -60,18 +62,18 @@ interface J2ULTRAProviderConfig {
 export interface ProviderConfigs {
   provider: ProviderType
   configs: {
-    [ProviderType.J2ULTRA]: J2ULTRAProviderConfig | undefined
+    [ProviderType.J2LIGHT]: J2ProviderConfig | undefined
   }
 }
 
 export async function getProviderConfigs(): Promise<ProviderConfigs> {
-  const { provider = ProviderType.J2 } = await Browser.storage.local.get('provider')
-  const configKey = `provider:${ProviderType.J2ULTRA}`
+  const { provider = ProviderType.J2LIGHT } = await Browser.storage.local.get('provider')
+  const configKey = `provider:${ProviderType.J2LIGHT}`
   const result = await Browser.storage.local.get(configKey)
   return {
     provider,
     configs: {
-      [ProviderType.J2ULTRA]: result[configKey],
+      [ProviderType.J2LIGHT]: result[configKey],
     },
   }
 }
@@ -82,6 +84,6 @@ export async function saveProviderConfigs(
 ) {
   return Browser.storage.local.set({
     provider,
-    [`provider:${ProviderType.J2ULTRA}`]: configs[ProviderType.J2ULTRA],
+    [`provider:${ProviderType.J2LIGHT}`]: configs[ProviderType.J2LIGHT],
   })
 }
