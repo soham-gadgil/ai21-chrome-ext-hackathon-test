@@ -13,7 +13,7 @@
   "host_permissions": ["https://api.ai21.com/"],
   "permissions": ["storage", "tabs"],
   "background": {
-    "service_worker": "wrapper.js"
+    "service_worker": "background.js"
   },
   "action": {
 	"default_icon": {
