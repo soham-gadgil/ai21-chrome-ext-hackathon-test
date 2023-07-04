@@ -13,7 +13,7 @@ export function getPossibleElementByQuerySelector<T extends Element>(
 
 export function endsWithQuestionMark(question: string) {
   return (
-    question.endsWith('?') || // ASCII
+    question.endsWith('?')  // ASCII
   )
 }
 
