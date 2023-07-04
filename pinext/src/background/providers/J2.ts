@@ -30,7 +30,7 @@ const KEY_ACCESS_TOKEN = 'accessToken'
 
 const cache = new ExpiryMap(10 * 1000)
 
-export async function getChatGPTAccessToken(): Promise<string> {
+export async function getAI21AccessToken(): Promise<string> {
   if (cache.get(KEY_ACCESS_TOKEN)) {
     return cache.get(KEY_ACCESS_TOKEN)
   }
@@ -46,7 +46,7 @@ export async function getChatGPTAccessToken(): Promise<string> {
   return data.accessToken
 }
 
-export class ChatGPTProvider implements Provider {
+export class J2Provider implements Provider {
   constructor(private token: string) {
     this.token = token
   }
@@ -81,12 +81,14 @@ export class ChatGPTProvider implements Provider {
     console.debug('Using model:', modelName)
 
     await fetchSSE('https://chat.openai.com/backend-api/conversation', {
+
       method: 'POST',
-      signal: params.signal,
+
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.token}`,
+        "Content-Type": 'application/json',
+        "Authorization": `Bearer ${this.token}`,
       },
+
       body: JSON.stringify({
         action: 'next',
         messages: [
@@ -102,6 +104,7 @@ export class ChatGPTProvider implements Provider {
         model: modelName,
         parent_message_id: uuidv4(),
       }),
+
       onMessage(message: string) {
         console.debug('sse message', message)
         if (message === '[DONE]') {
