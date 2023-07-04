@@ -82,7 +82,6 @@ async function build() {
     { src: 'build/popup/index.css', dst: 'popup.css' },
     { src: 'src/popup/index.html', dst: 'popup.html' },
     { src: 'src/logo.png', dst: 'logo.png' },
-    { src: 'src/_locales', dst: '_locales' },
   ]
 
   // chromium
@@ -92,14 +91,6 @@ async function build() {
   )
 
   await zipFolder(`./${outdir}/chromium`)
-
-  // firefox
-  await copyFiles(
-    [...commonFiles, { src: 'src/manifest.v2.json', dst: 'manifest.json' }],
-    `./${outdir}/firefox`,
-  )
-
-  await zipFolder(`./${outdir}/firefox`)
 
   console.log('Build success.')
 }
