@@ -1,6 +1,9 @@
 import { CssBaseline, GeistProvider, Radio, Select, Text, Toggle, useToasts } from '@geist-ui/core'
 import { useCallback, useEffect, useMemo, useState } from 'preact/hooks'
 import '../base.css';
+import logo from '../logo.png'
+
+
 
 function App() {
   return (
