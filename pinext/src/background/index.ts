@@ -1,20 +1,26 @@
 import Browser from 'webextension-polyfill'
 import { getProviderConfigs, ProviderType } from '../config'
-import { ChatGPTProvider, getChatGPTAccessToken, sendMessageFeedback } from './providers/chatgpt'
-import { OpenAIProvider } from './providers/openai'
+import { J2Provider, getAI21AccessToken, sendMessageFeedback } from './providers/J2'
+import { AI21Provider } from './providers/ai21'
 import { Provider } from './types'
 
 async function generateAnswers(port: Browser.Runtime.Port, question: string) {
   const providerConfigs = await getProviderConfigs()
 
   let provider: Provider
-  if (providerConfigs.provider === ProviderType.ChatGPT) {
-    const token = await getChatGPTAccessToken()
-    provider = new ChatGPTProvider(token)
-  } else if (providerConfigs.provider === ProviderType.GPT3) {
-    const { apiKey, model } = providerConfigs.configs[ProviderType.GPT3]!
-    provider = new OpenAIProvider(apiKey, model)
-  } else {
+  if (providerConfigs.provider === ProviderType.J2ULTRA) {
+    const { apiKey, model } = providerConfigs.configs[ProviderType.J2ULTRA]!
+    provider = new J2Provider(apiKey, model)
+  } 
+  else if (providerConfigs.provider === ProviderType.J2MID) {
+    const { apiKey, model } = providerConfigs.configs[ProviderType.J2MID]!
+    provider = new J2Provider(apiKey, model)
+  } 
+  else if (providerConfigs.provider === ProviderType.J2LIGHT) {
+	  const { apiKey, model } = providerConfigs.configs[ProviderType.J2LIGHT]!
+	  provider = new J2Provider(apiKey, model)
+  }
+  else {
     throw new Error(`Unknown provider ${providerConfigs.provider}`)
   }
 
@@ -51,12 +57,12 @@ Browser.runtime.onConnect.addListener((port) => {
 
 Browser.runtime.onMessage.addListener(async (message) => {
   if (message.type === 'FEEDBACK') {
-    const token = await getChatGPTAccessToken()
+    const token = await getAI21AccessToken()
     await sendMessageFeedback(token, message.data)
   } else if (message.type === 'OPEN_OPTIONS_PAGE') {
     Browser.runtime.openOptionsPage()
   } else if (message.type === 'GET_ACCESS_TOKEN') {
-    return getChatGPTAccessToken()
+    return getAI21AccessToken()
   }
 })
 
