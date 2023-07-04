@@ -31,7 +31,7 @@ function App() {
     <div className="flex flex-col h-full">
       <div className="mb-2 flex flex-row items-center px-1">
         <img src={logo} className="w-5 h-5 rounded-sm" />
-        <p className="text-sm font-semibold m-0 ml-1">ChatGPT for Google</p>
+        <p className="text-sm font-semibold m-0 ml-1">PinExt</p>
         <div className="grow"></div>
         <span className="cursor-pointer leading-[0]" onClick={openOptionsPage}>
           <GearIcon size={16} />
@@ -55,13 +55,13 @@ function App() {
           )
         }
         if (accessTokenQuery.data) {
-          return <iframe src="https://chat.openai.com" className="grow border-none" />
+          return <iframe src="https://studio.ai21.com/playground/complete" className="grow border-none" />
         }
         return (
           <div className="grow flex flex-col justify-center">
             <p className="text-base px-2 text-center">
               Please login and pass Cloudflare check at{' '}
-              <a href="https://chat.openai.com" target="_blank" rel="noreferrer">
+              <a href="https://studio.ai21.com/playground/complete" target="_blank" rel="noreferrer">
                 chat.openai.com
               </a>
             </p>
