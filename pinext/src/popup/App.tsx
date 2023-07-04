@@ -62,8 +62,7 @@ function App() {
             <p className="text-base px-2 text-center">
               Please login and pass Cloudflare check at{' '}
               <a href="https://studio.ai21.com/playground/complete" target="_blank" rel="noreferrer">
-                chat.openai.com
-              </a>
+                studio.ai21.com              </a>
             </p>
           </div>
         )
