@@ -1,4 +1,3 @@
-
 import { createParser } from 'eventsource-parser'
 import { isEmpty } from 'lodash-es'
 import { streamAsyncIterable } from './stream-async-iterable.js'
