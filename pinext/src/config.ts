@@ -20,19 +20,27 @@ export const TRIGGER_MODE_TEXT = {
 }
 
 export enum Theme {
+  Auto = 'auto',
   Light = 'light',
   Dark = 'dark',
 }
 
 export enum Language {
+  Auto = 'auto',
   English = 'english',
-  German = 'german'
+  Chinese = 'chinese',
+  Spanish = 'spanish',
+  French = 'french',
+  Korean = 'korean',
+  Japanese = 'japanese',
+  German = 'german',
+  Portuguese = 'portuguese',
 }
 
 const userConfigWithDefaultValue = {
   triggerMode: TriggerMode.Always,
-  theme: Theme.Light,
-  language: Language.English,
+  theme: Theme.Auto,
+  language: Language.Auto,
 }
 
 export type UserConfig = typeof userConfigWithDefaultValue
