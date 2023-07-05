@@ -45,34 +45,22 @@ def main():
     # Rest of your Streamlit app code goes here
     st.markdown("<h1 style='text-align: center; color: black;'>Made for all chrome users</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: black;'>Simple. Effortless. Accurate.</h5>", unsafe_allow_html=True)
-    st.markdown(
-        """
-        <style>
-        .stButton>button {
-            display: block;
-            margin: 0 auto;
-            text-align: center;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     
     # Create a container to hold the buttons
     col1, col2, col3, col4 = st.columns(4)
     with col2:
         st.markdown("""
-            <a href='#' style='display: block; margin: 0 auto; text-align: center;'>
-                <button style='background-color: #0d0d0d; border: none; width: 170px; height:50px; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;'>
-                    👆 Download
+            <a href='#' style='display: block; margin: 0 auto; text-align: center;vertical-align: center; '>
+                <button style='background-color: #0d0d0d; border: none; width: 170px; height:45px; color: white; padding: 15px 32px; text-align: center; vertical-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;'>
+                    👆 Demo
                 </button>
             </a>
             """, unsafe_allow_html=True)
     
     with col3:
         st.markdown("""
-            <a href='https://github.com/cnm13ryan/ai21-chrome-ext-hackathon-test' style='display: block; margin: 0 auto; text-align: center;'>
-                <button style='background-color: #0d0d0d; border: none; width: 170px; height:50px; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;'>
+            <a href='https://github.com/cnm13ryan/ai21-chrome-ext-hackathon-test' style='display: block; margin: 0 auto; text-align: center;vertical-align: center; '>
+                <button style='background-color: #0d0d0d; border: none; width: 170px; height:45px; color: white; padding: 15px 32px; text-align: center; vertical-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;'>
                     👆 Github
                 </button>
             </a>
