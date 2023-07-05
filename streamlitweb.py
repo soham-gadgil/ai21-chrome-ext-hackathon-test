@@ -1,13 +1,13 @@
 import os
+import base64
+from PIL import Image
+
 import ai21
 import streamlit as st
 from dotenv import load_dotenv
-from PIL import Image
-import base64
 
 # Load secrets
 load_dotenv()
-
 API_KEY = os.getenv("AI21_LABS_API_KEY")
 ai21.api_key = API_KEY
 
@@ -15,52 +15,100 @@ ai21.api_key = API_KEY
 height = 500
 width = 1000
 
-def button_markdown(button_text, button_link, col):
-    button_code = f"""
-        <a href='{button_link}' style='display: block; margin: 0 auto; text-align: center;vertical-align: center; '>
-            <button style='background-color: #0d0d0d; border: none; width: 150px; height:45px; color: white; padding: 15px 32px; text-align: center; vertical-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin: 4px 4px; cursor: pointer; border-radius: 12px;'>
-                {button_text}
-            </button>
-        </a>
-        """
-    col.markdown(button_code, unsafe_allow_html=True)
 
-def load_and_display_image(image_path, icon_size=(128, 64)):
-    # Load the image
-    image = Image.open(image_path)
+def img_to_data_url(path):
+    with open(path, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+    return f"data:image/png;base64,{encoded_string}"
 
-    # Resize the image
-    resized_image = image.resize(icon_size)
 
-    # Display the image
-    st.image(resized_image, use_column_width=False)
+def button_markdown(button_text: str, button_link: str, logo_path: str = None):
+    logo_data_url = img_to_data_url(logo_path) if logo_path else None
+    button_style = f"""
+        <a href='{button_link}' style='display: block; margin: 0 auto; text-align: center;'>
+            <button style='background-color: #0d0d0d; border: none; width: 150px; height:45px; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin: 4px 4px; cursor: pointer; border-radius: 12px;'>
+    """
+    if logo_data_url:
+        button_style += f'<img src="{logo_data_url}" style="height: 20px; width: 20px;" />'
+    button_style += f"{button_text}</button></a>"
+    return button_style
 
-def display_markdown_text(text, align='center', color='black', tag='h1'):
-    st.markdown(f"<{tag} style='text-align: {align}; color: {color};'>{text}</{tag}>", unsafe_allow_html=True)
 
-def expander_content(expander_text, content):
-    with st.expander(expander_text):
-        st.markdown(f"<p class='expander-header'>{content}</p>", unsafe_allow_html=True)
+def add_bg_from_local(image_file):
+    with open(image_file, "rb") as image_file:
+        encoded_string = base64.b64encode(image_file.read()).decode()
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url(data:image/png;base64,{encoded_string});
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
 
 def main():
-    load_and_display_image("./images/logo-removebg.png")
+    # Load the image
+    image = Image.open("./images/logo-removebg.png")
+    # Resize the image
+    icon_size = (128, 64)
+    resized_image = image.resize(icon_size)
+    # CSS styling to position the image in the top-left corner and adjust its size
+    render_styling(icon_size)
+    # Display the image as an icon in the top-left corner
+    st.image(resized_image, use_column_width=False)
+    # Rest of your Streamlit app code goes here
+    render_app_contents()
 
-    display_markdown_text('Made for all chrome users')
-    display_markdown_text('Simple. Effortless. Accurate.', tag='h3')
+    add_bg_from_local('./images/bg3.jpg')
 
+
+def render_styling(icon_size):
+    # CSS Styling for icon and webpage
+    st.markdown(f"""
+        <style>
+        .icon {{
+            width: {icon_size[0]}px;
+            height: {icon_size[1]}px;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }}
+        </style>
+        """, unsafe_allow_html=True)
+
+
+def render_app_contents():
+    # App Contents
+    st.markdown("<h1 style='text-align: center; color: black;'>Made for all chrome users</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: black;'>Simple. Effortless. Accurate.</h3>", unsafe_allow_html=True)
+    
     # Create a container to hold the buttons
     col1, col2, col3, col4 = st.columns(4)
-    button_markdown("👆 Demo", '#', col2)
-    button_markdown("👆 Github", 'https://github.com/cnm13ryan/ai21-chrome-ext-hackathon-test', col3)
+    demo_button = button_markdown("Demo", "#")
+    with col2:
+        st.markdown(demo_button, unsafe_allow_html=True)
 
-    display_markdown_text('How does PinEx work?', align='left', tag='h3')
-    display_markdown_text('Simply describe the problem you\'re trying to solve in the chatbox, and let PinEx work its magic. PinEx will analyze your needs and match you with the most efficient Chrome extension available in the store.', align='left', color='black', tag='subh3')
+    github_button = button_markdown("Github", "https://github.com/cnm13ryan/ai21-chrome-ext-hackathon-test", "./images/github-g9336db1b6_1280.png")
+    with col3:
+        st.markdown(github_button, unsafe_allow_html=True)
+    # Rest of the content
+    render_remaining_content()
 
-    display_markdown_text('DEMO', align='left', color='#0d0d0d', tag='h3')
+
+def render_remaining_content():
+    st.markdown("<h3 style='text-align: left; color: black;'>How does PinEx work?</h3>", unsafe_allow_html=True)
+    st.markdown("<subh3 style='text-align: left; color: black;'>Simply describe the problem you're trying to solve in the chatbox, and let PinEx work its magic. PinEx will analyze your needs and match you with the most efficient Chrome extension available in the store.</subh3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>DEMO</h3>", unsafe_allow_html=True)
     st.video("testvideo.mp4")
-    
-    display_markdown_text('FAQs', align='left', color='#0d0d0d', tag='h3')
+    st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>FAQs</h3>", unsafe_allow_html=True)
+    render_faq()
 
+
+def render_faq():
     expander_style = """
         <style>
         .expander-header {
@@ -74,25 +122,12 @@ def main():
         </style>
     """
     st.markdown(expander_style, unsafe_allow_html=True)
+    with st.expander("Is PinEx powered by?"):
+        st.markdown("<p class='expander-content'>PinEx is a Chrome extension built using TypeScript and powered by ChatGPT.</p>", unsafe_allow_html=True)
+    with st.expander("Is PinEx free to use?"):
+        st.markdown("<p class='expander-content'>Is PinEx free to use?</p>", unsafe_allow_html=True)
+        st.write("PinEx extension is completely free to use.")
 
-    expander_content("Is PinEx powered by?", "PinEx is a Chrome extension built using TypeScript and powered by ChatGPT.")
-    expander_content("Is PinEx free to use?", "PinEx extension is completely free to use.")
-
-def add_bg_from_local(image_file):
-    with open(image_file, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read())
-    st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
-        background-size: cover
-    }}
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
 
 if __name__ == "__main__":
     main()
-    add_bg_from_local('./images/bg3.jpg') 
