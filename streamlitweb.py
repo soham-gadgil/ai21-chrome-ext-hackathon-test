@@ -51,7 +51,7 @@ def main():
     with col2:
         st.markdown("""
             <a href='#' style='display: block; margin: 0 auto; text-align: center;vertical-align: center; '>
-                <button style='background-color: #0d0d0d; border: none; width: 170px; height:45px; color: white; padding: 15px 32px; text-align: center; vertical-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;'>
+                <button style='background-color: #0d0d0d; border: none; width: 150px; height:45px; color: white; padding: 15px 32px; text-align: center; vertical-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin: 4px 4px; cursor: pointer; border-radius: 12px;'>
                     👆 Demo
                 </button>
             </a>
@@ -60,7 +60,7 @@ def main():
     with col3:
         st.markdown("""
             <a href='https://github.com/cnm13ryan/ai21-chrome-ext-hackathon-test' style='display: block; margin: 0 auto; text-align: center;vertical-align: center; '>
-                <button style='background-color: #0d0d0d; border: none; width: 170px; height:45px; color: white; padding: 15px 32px; text-align: center; vertical-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer; border-radius: 12px;'>
+                <button style='background-color: #0d0d0d; border: none; width: 150px; height:45px; color: white; padding: 15px 32px; text-align: center; vertical-align: center; text-decoration: none; display: inline-block; font-size: 14px; margin: 4px 4px; cursor: pointer; border-radius: 12px;'>
                     👆 Github
                 </button>
             </a>
