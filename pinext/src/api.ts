@@ -20,7 +20,6 @@ export async function fetchPromotion(): Promise<PromotionResponse | null> {
 }
 
 export async function fetchExtensionConfigs(): Promise<{
-  j2_webapp_model_name: string
   AI21_model_names: string[]
 }> {
   return fetch(`${API_HOST}/api/config`, {
