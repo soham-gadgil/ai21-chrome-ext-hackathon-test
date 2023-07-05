@@ -52,7 +52,7 @@ def add_bg_from_local(image_file):
 
 def main():
     # Load the image
-    image = Image.open("./images/logo-removebg.png")
+    image = Image.open("./images/logo.png")
     # Resize the image
     icon_size = (128, 64)
     resized_image = image.resize(icon_size)
