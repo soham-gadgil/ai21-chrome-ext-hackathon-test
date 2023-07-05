@@ -1,6 +1,6 @@
 import { getExtensionVersion } from './utils'
 
-const API_HOST = 'https://chatgpt4google.com/'
+const API_HOST = 'https://localhost:8501'
 
 export interface PromotionResponse {
   url: string
