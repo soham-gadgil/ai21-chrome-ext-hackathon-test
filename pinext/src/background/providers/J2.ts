@@ -4,7 +4,7 @@ import { fetchSSE } from '../fetch-sse'
 import { GenerateAnswerParams, Provider } from '../types'
 
 async function request(token: string, method: string, path: string, data?: unknown) {
-  return fetch(`https://chat.openai.com/backend-api${path}`, {
+  return fetch(`https://api.ai21.com/studio/v1/j2-light/complete`, {
     method,
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export async function getAI21AccessToken(): Promise<string> {
   if (cache.get(KEY_ACCESS_TOKEN)) {
     return cache.get(KEY_ACCESS_TOKEN)
   }
-  const resp = await fetch('https://chat.openai.com/api/auth/session')
+  const resp = await fetch('https://api.ai21.com/studio/v1/j2-light/complete')
   if (resp.status === 403) {
     throw new Error('CLOUDFLARE')
   }
@@ -80,7 +80,7 @@ export class J2Provider implements Provider {
     const modelName = await this.getModelName()
     console.debug('Using model:', modelName)
 
-    await fetchSSE('https://chat.openai.com/backend-api/conversation', {
+    await fetchSSE('https://api.ai21.com/studio/v1/j2-light/complete', {
 
       method: 'POST',
 

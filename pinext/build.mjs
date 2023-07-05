@@ -82,6 +82,7 @@ async function build() {
     { src: 'build/popup/index.css', dst: 'popup.css' },
     { src: 'src/popup/index.html', dst: 'popup.html' },
     { src: 'src/logo.png', dst: 'logo.png' },
+    { src: 'src/_locales', dst: '_locales' }
   ]
 
   // chromium
