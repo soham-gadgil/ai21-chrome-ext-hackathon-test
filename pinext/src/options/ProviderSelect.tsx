@@ -43,7 +43,7 @@ const ConfigPanel: FC<ConfigProps> = ({ config, models }) => {
   return (
     <div className="flex flex-col gap-3">
       <Tabs value={tab} onChange={(v) => setTab(v as ProviderType)}>
-        <Tabs.Item label="Jurassic 2 webapp" value={ProviderType.J2}>
+        <Tabs.Item label="Jurassic 2 webapp" value={ProviderType.J2LIGHT}>
           The API that powers Jurassic 2 webapp, free, but sometimes unstable
         </Tabs.Item>
         <Tabs.Item label="AI21 API" value={ProviderType.J2LIGHT}>
