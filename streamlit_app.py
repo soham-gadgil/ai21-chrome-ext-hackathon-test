@@ -2,14 +2,14 @@ import os
 import base64
 from PIL import Image
 
-import ai21
+# import ai21
 import streamlit as st
 from dotenv import load_dotenv
 
 # Load secrets
 load_dotenv()
-API_KEY = os.getenv("AI21_LABS_API_KEY")
-ai21.api_key = API_KEY
+# API_KEY = os.getenv("AI21_LABS_API_KEY")
+# ai21.api_key = API_KEY
 
 # Webpage dimensions
 height = 500
@@ -18,7 +18,7 @@ width = 1000
 @st.cache_data()
 def get_data():
     # replace with your real data loading
-    return {"j2_webapp_model_name": "model_name", "AI21_model_names": ["model_1", "model_2"]}
+    return {"AI21_model_names": ["j2-light", "j2-mid", "j2-ultra"]}
 
 @st.cache_data()
 def get_promotion():
@@ -47,7 +47,7 @@ elif endpoint == "p":
 else:
     # rest of your Streamlit app goes here
     # replace with your current application code
-    st.write("Welcome to my Streamlit app!")
+    st.write("Welcome to PinExt!")
 
 def img_to_data_url(path):
     with open(path, "rb") as image_file:

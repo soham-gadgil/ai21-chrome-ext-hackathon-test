@@ -1,6 +1,6 @@
 import { getExtensionVersion } from './utils'
 
-const API_HOST = 'https://localhost:8501'
+const API_HOST = 'https://pinext.streamlit.app/'
 
 export interface PromotionResponse {
   url: string
@@ -20,7 +20,6 @@ export async function fetchPromotion(): Promise<PromotionResponse | null> {
 }
 
 export async function fetchExtensionConfigs(): Promise<{
-  j2_webapp_model_name: string
   AI21_model_names: string[]
 }> {
   return fetch(`${API_HOST}/api/config`, {
