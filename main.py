@@ -20,25 +20,26 @@ if "messages" not in st.session_state:
 
 def get_and_validate_api_key():
     AI21_API_KEY = st.text_input("Please enter your AI21 Labs API Key", type="password")
-    ai21.api_key = AI21_API_KEY
-
-    # First, check if API Key is provided.
+    
+    # Check if API Key is provided
     if not AI21_API_KEY:
         st.error("API Key is required to run the demo.")
         return False
-    else:
-        try:
-            # Run a test API call to check if the key is valid
-            ai21.Completion.execute(model="j2-light", prompt="Test", temperature=0.5, min_tokens=1, max_tokens=10, num_results=1)
-            # If the above line doesn't raise an exception, the API key is valid
-            return True
 
-        except ai21.errors.Ai21Error as e:
-            if "401 Client Error" in str(e):
-                st.error("The provided API Key is not valid.")
-            else:
-                st.error(f"An error occurred: {e}")
-            return False
+    # Set the API key for use in ai21 library
+    ai21.api_key = AI21_API_KEY
+    
+    # Run a test API call to check if the key is valid
+    try:
+        ai21.Completion.execute(model="j2-light", prompt="Test", temperature=0.5, min_tokens=1, max_tokens=10, num_results=1)
+        return True
+
+    except Exception as e:
+        if "401 Client Error" in str(e) or '403 Forbidden' in str(e): # 403 Forbidden can also indicate an invalid key
+            st.error("The provided API Key is not valid.")
+        else:
+            st.error(f"An error occurred: {e}")
+        return False
 
 def execute_lmm_call(model: str, prompt: str, temperature: float, min_tokens: int, max_tokens: int, num_results: int) -> str:
     response = ai21.Completion.execute(
