@@ -214,15 +214,15 @@ def render_app_contents():
     st.markdown("<h1 style='text-align: center; color: black;'>Made for all chrome users</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: black;'>Simple. Effortless. Accurate.</h3>", unsafe_allow_html=True)
     
-    # Create a container to hold the buttons
-    col1, col2, col3, col4 = st.columns(4)
-    demo_button = button_markdown("Demo", "#")
-    with col2:
-        st.markdown(demo_button, unsafe_allow_html=True)
+    # # Create a container to hold the buttons
+    # col1, col2, col3, col4 = st.columns(4)
+    # demo_button = button_markdown("Demo", "#")
+    # with col2:
+    #     st.markdown(demo_button, unsafe_allow_html=True)
 
-    github_button = button_markdown("Github", "https://github.com/cnm13ryan/ai21-chrome-ext-hackathon-test", "./images/github-g9336db1b6_1280.png")
-    with col3:
-        st.markdown(github_button, unsafe_allow_html=True)
+    # github_button = button_markdown("Github", "https://github.com/cnm13ryan/ai21-chrome-ext-hackathon-test", "./images/github-g9336db1b6_1280.png")
+    # with col3:
+    #     st.markdown(github_button, unsafe_allow_html=True)
 
     # Rest of the content
     render_remaining_content()
