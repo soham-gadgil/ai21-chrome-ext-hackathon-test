@@ -241,8 +241,7 @@ def render_faq():
     with st.expander("What technology is PinEx powered by?"):
         st.markdown("<p class='expander-content'>PinEx is built using Streamlit and powered by J2-Light from AI21 Labs.</p>", unsafe_allow_html=True)
     with st.expander("Is PinExt free to use?"):
-        st.markdown("<p class='expander-content'>Is PinEx free to use?</p>", unsafe_allow_html=True)
-        st.write("PinEx extension is completely free to use.")
+        st.markdown("<p class='expander-content'>PinEx is completely free to use.</p>", unsafe_allow_html=True)
 
 def add_background():
     # bg_image = Image.open('./images/bg3.jpg')
