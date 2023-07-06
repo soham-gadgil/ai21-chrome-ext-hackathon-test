@@ -1,0 +1,65 @@
+{
+  "name": "pinext",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@geist-ui/core": "^2.3.8",
+    "@primer/octicons-react": "^19.4.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.38",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "eventsource-parser": "^1.0.0",
+    "expiry-map": "^2.0.0",
+    "lodash-es": "^4.17.21",
+    "preact": "^10.15.1",
+    "react": "npm:@preact/compat@^17.1.2",
+    "react-dom": "npm:@preact/compat@^17.1.2",
+    "react-markdown": "^8.0.7",
+    "react-scripts": "5.0.1",
+    "rehype-highlight": "^6.0.0",
+    "swr": "^2.2.0",
+    "uuid": "^9.0.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "node build.mjs",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/lodash-es": "^4.17.7",
+    "@types/uuid": "^9.0.2",
+    "@types/webextension-polyfill": "^0.10.1",
+    "archiver": "^5.3.1",
+    "autoprefixer": "^10.4.14",
+    "dotenv": "^16.3.1",
+    "esbuild": "^0.18.11",
+    "esbuild-style-plugin": "^1.6.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "fs-extra": "^11.1.1",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "typescript": "^4.9.5",
+    "webextension-polyfill": "^0.10.0"
+  }
+}
