@@ -1,10 +1,16 @@
 import os
+import ai21
+import streamlit as st
 import base64
 from PIL import Image
-
-# import ai21
-import streamlit as st
 from dotenv import load_dotenv
+
+# Load secrets
+load_dotenv()
+
+API_KEY = os.getenv("AI21_LABS_API_KEY")
+
+ai21.api_key = API_KEY
 
 # Load secrets
 load_dotenv()
@@ -158,9 +164,32 @@ def render_faq():
     with st.expander("Is PinEx powered by?"):
         st.markdown("<p class='expander-content'>PinEx is a Chrome extension built using TypeScript and powered by ChatGPT.</p>", unsafe_allow_html=True)
     with st.expander("Is PinEx free to use?"):
-        st.markdown("<p class='expander-content'>Is PinEx free to use?</p>", unsafe_allow_html=True)
-        st.write("PinEx extension is completely free to use.")
+        st.markdown("<p class='expander-content'>PinEx is completely free to use.</p>", unsafe_allow_html=True)
+    demo()
 
+def demo():
+    PROMPT = "Provide a list of the top 10 Chrome extensions that would be best suited to help users solve their problem.\nDescription of problem: {description}\nList: "
 
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+    # React to user input
+    if prompt := st.chat_input("What is up?"):
+        # Display user message in chat message container
+        with st.chat_message("user"):
+            st.markdown(prompt)
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+    response = f"Echo: {prompt}"
+    # Display assistant response in chat message container
+    with st.chat_message("assistant"):
+        st.markdown(response)
+    # Add assistant response to chat history
+    st.session_state.messages.append({"role": "assistant", "content": response})
 if __name__ == "__main__":
     main()
