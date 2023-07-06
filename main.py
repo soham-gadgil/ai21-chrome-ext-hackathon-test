@@ -56,8 +56,12 @@ def generate_prompt(format: str, description: str) -> str:
     return format.format(description=description)
 
 def search_links(name: str) -> str:
-    for link in search(f'Chrome extension {name}', tld="com", num=10, stop=10, pause=1):
-        return link
+    # Format the name to fit within a Google search URL
+    name_formatted = name.replace(' ', '+')
+    # Generate the Google search URL
+    link = f'https://www.google.com/search?q=Chrome+extension+{name_formatted}+web+store'
+    return link
+
 
 def extract_extensions_from_answer(answer: str) -> list:
     ext_names = re.split('\d+. ', answer)
