@@ -26,7 +26,7 @@ def get_and_validate_api_key():
         st.error("API Key is required to run the demo.")
         st.markdown(
             """
-            You can register for an API key [here](https://studio.ai21.com/login).
+            You can register for an API key [here](https://studio.ai21.com/account/api-key).
             """
         )
         return False
