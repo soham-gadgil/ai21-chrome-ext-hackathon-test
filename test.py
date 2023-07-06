@@ -1,49 +1,58 @@
-import os
-
-import ai21
 import streamlit as st
-from dotenv import load_dotenv
+import numpy as np
+import time
 
-# Load secrets
-load_dotenv()
-
-API_KEY = os.getenv("AI21_LABS_API_KEY")
-
-ai21.api_key = API_KEY
-
-PROMPT = "Based on the description given, name the sport.\nDescription: {description}\n Sport name: "
-
-# Initialization
-if "output" not in st.session_state:
-    st.session_state["output"] = "Output:"
-
-
-def guess_sport(inp):
-    if not len(inp):
-        return None
-
-    prompt = PROMPT.format(description=inp)
-
-    response = ai21.Completion.execute(
-        model="j2-grande-instruct",
-        prompt=prompt,
-        temperature=0.5,
-        minTokens=1,
-        maxTokens=15,
-        numResults=1,
-    )
-
-    st.session_state["output"] = response.completions[0].data.text
-    st.balloons()
-
-
-st.title("The Sports Guesser")
-
-st.write(
-    "This is a simple **Streamlit** app that generates Sport Name based on given description"
+st.set_page_config(
+    page_title="Hello",
+    page_icon="👋",
 )
 
+st.write("# Welcome to Streamlit! 👋")
 
-inp = st.text_area("Enter your description here", height=100)
-st.button("Gue" "ss", on_click=guess_sport(inp))
-st.write(f"Answer: {st.session_state.output}")
+st.sidebar.success("Select a demo above.")
+
+st.markdown(
+    """
+    Streamlit is an open-source app framework built specifically for
+    Machine Learning and Data Science projects.
+    **👈 Select a demo from the sidebar** to see some examples
+    of what Streamlit can do!
+    ### Want to learn more?
+    - Check out [streamlit.io](https://streamlit.io)
+    - Jump into our [documentation](https://docs.streamlit.io)
+    - Ask a question in our [community
+        forums](https://discuss.streamlit.io)
+    ### See more complex demos
+    - Use a neural net to [analyze the Udacity Self-driving Car Image
+        Dataset](https://github.com/streamlit/demo-self-driving)
+    - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
+"""
+)
+
+st.markdown("# Plotting Demo")
+st.sidebar.header("Plotting Demo")
+st.write(
+    """This demo illustrates a combination of plotting and animation with
+Streamlit. We're generating a bunch of random numbers in a loop for around
+5 seconds. Enjoy!"""
+)
+
+progress_bar = st.sidebar.progress(0)
+status_text = st.sidebar.empty()
+last_rows = np.random.randn(1, 1)
+chart = st.line_chart(last_rows)
+
+for i in range(1, 101):
+    new_rows = last_rows[-1, :] + np.random.randn(5, 1).cumsum(axis=0)
+    status_text.text("%i%% Complete" % i)
+    chart.add_rows(new_rows)
+    progress_bar.progress(i)
+    last_rows = new_rows
+    time.sleep(0.05)
+
+progress_bar.empty()
+
+# Streamlit widgets automatically run the script from top to bottom. Since
+# this button is not connected to any other logic, it just causes a plain
+# rerun.
+st.button("Re-run")

@@ -6,16 +6,11 @@ from PIL import Image
 from dotenv import load_dotenv
 
 # Load secrets
-load_dotenv()
-
-API_KEY = os.getenv("AI21_LABS_API_KEY")
-
-ai21.api_key = API_KEY
-
-# Load secrets
-load_dotenv()
 # API_KEY = os.getenv("AI21_LABS_API_KEY")
 # ai21.api_key = API_KEY
+load_dotenv()
+API_KEY = os.getenv("AI21_LABS_API_KEY")
+ai21.api_key = API_KEY
 
 # Webpage dimensions
 height = 500
@@ -100,7 +95,7 @@ def main():
     # Display the image as an icon in the top-left corner
     st.image(resized_image, use_column_width=False)
     # Rest of your Streamlit app code goes here
-    render_app_contents()
+
 
     add_bg_from_local('./images/bg3.jpg')
 
@@ -120,7 +115,7 @@ def render_styling(icon_size):
         """, unsafe_allow_html=True)
 
 
-def render_app_contents():
+def main():
     # App Contents
     st.markdown("<h1 style='text-align: center; color: black;'>Made for all chrome users</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: black;'>Simple. Effortless. Accurate.</h3>", unsafe_allow_html=True)
@@ -135,19 +130,13 @@ def render_app_contents():
     with col3:
         st.markdown(github_button, unsafe_allow_html=True)
     # Rest of the content
-    render_remaining_content()
 
-
-def render_remaining_content():
     st.markdown("<h3 style='text-align: left; color: black;'>How does PinEx work?</h3>", unsafe_allow_html=True)
     st.markdown("<subh3 style='text-align: left; color: black;'>Simply describe the problem you're trying to solve in the chatbox, and let PinEx work its magic. PinEx will analyze your needs and match you with the most efficient Chrome extension available in the store.</subh3>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>DEMO</h3>", unsafe_allow_html=True)
     st.video("testvideo.mp4")
     st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>FAQs</h3>", unsafe_allow_html=True)
-    render_faq()
 
-
-def render_faq():
     expander_style = """
         <style>
         .expander-header {
@@ -165,8 +154,8 @@ def render_faq():
         st.markdown("<p class='expander-content'>PinEx is a Chrome extension built using TypeScript and powered by ChatGPT.</p>", unsafe_allow_html=True)
     with st.expander("Is PinEx free to use?"):
         st.markdown("<p class='expander-content'>PinEx is completely free to use.</p>", unsafe_allow_html=True)
-    demo()
 
+    
 def demo():
     PROMPT = "Provide a list of the top 10 Chrome extensions that would be best suited to help users solve their problem.\nDescription of problem: {description}\nList: "
 
@@ -178,6 +167,7 @@ def demo():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
+
     # React to user input
     if prompt := st.chat_input("What is up?"):
         # Display user message in chat message container
@@ -185,11 +175,34 @@ def demo():
             st.markdown(prompt)
         # Add user message to chat history
         st.session_state.messages.append({"role": "user", "content": prompt})
-    response = f"Echo: {prompt}"
-    # Display assistant response in chat message container
-    with st.chat_message("assistant"):
-        st.markdown(response)
-    # Add assistant response to chat history
-    st.session_state.messages.append({"role": "assistant", "content": response})
-if __name__ == "__main__":
-    main()
+
+        # Generate response using AI model
+        response = ai21.Completion.execute(
+            model="j2-grande-instruct",
+            prompt=prompt,
+            temperature=0.5,
+            minTokens=1,
+            maxTokens=256,
+            numResults=10,
+        )
+
+        st.session_state["output"] = response.completions[0].data.text
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            st.markdown(response.completions[0].data.text)
+        # Add assistant response to chat history
+        st.session_state.messages.append({"role": "assistant", "content": response.completions[0].data.text})
+
+# Define a dictionary with page names as keys and corresponding functions as values
+pages = {
+    "Introduction": main,
+    "Demo": demo,
+}
+
+# Add a sidebar to navigate between pages
+page = st.sidebar.selectbox("Navigate", tuple(pages.keys()))
+
+# Execute the selected page's function
+pages[page]()
+
+
