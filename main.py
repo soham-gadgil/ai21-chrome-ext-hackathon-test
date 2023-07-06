@@ -24,6 +24,11 @@ def get_and_validate_api_key():
     # Check if API Key is provided
     if not AI21_API_KEY:
         st.error("API Key is required to run the demo.")
+        st.markdown(
+            """
+            You can register for an API key [here](https://studio.ai21.com/login).
+            """
+        )
         return False
 
     # Set the API key for use in ai21 library
