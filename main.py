@@ -6,10 +6,10 @@ import streamlit as st
 from googlesearch import search
 import base64
 from PIL import Image
+from requests import exceptions as req_exceptions
 
 load_dotenv()
-AI21_API_KEY = os.getenv("AI21_LABS_API_KEY")
-ai21.api_key = AI21_API_KEY
+
 
 # Initialize session state
 if "output" not in st.session_state:
@@ -17,6 +17,28 @@ if "output" not in st.session_state:
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+def get_and_validate_api_key():
+    AI21_API_KEY = st.text_input("Please enter your AI21 Labs API Key", type="password")
+    ai21.api_key = AI21_API_KEY
+
+    # First, check if API Key is provided.
+    if not AI21_API_KEY:
+        st.error("API Key is required to run the demo.")
+        return False
+    else:
+        try:
+            # Run a test API call to check if the key is valid
+            ai21.Completion.execute(model="j2-light", prompt="Test", temperature=0.5, min_tokens=1, max_tokens=10, num_results=1)
+            # If the above line doesn't raise an exception, the API key is valid
+            return True
+
+        except ai21.errors.Ai21Error as e:
+            if "401 Client Error" in str(e):
+                st.error("The provided API Key is not valid.")
+            else:
+                st.error(f"An error occurred: {e}")
+            return False
 
 def execute_lmm_call(model: str, prompt: str, temperature: float, min_tokens: int, max_tokens: int, num_results: int) -> str:
     response = ai21.Completion.execute(
@@ -57,6 +79,10 @@ def generate_extension_list(problem_desc: str) -> None:
     return results
 
 def demo():
+    # Retrieve and validate API key
+    if not get_and_validate_api_key():
+        return
+
     # Display chat messages from history on app rerun
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
@@ -83,39 +109,39 @@ def demo():
             st.session_state.messages.append({"role": "assistant", "content": response})
 
 
-@st.cache_data()
-def get_data():
-    # replace with your real data loading
-    return {"AI21_model_names": ["j2-light", "j2-mid", "j2-ultra"]}
+# @st.cache_data()
+# def get_data():
+#     # replace with your real data loading
+#     return {"AI21_model_names": ["j2-light", "j2-mid", "j2-ultra"]}
 
-@st.cache_data()
-def get_promotion():
-    # replace with your real promotion loading
-    return {
-        "url": "https://example.com",
-        "title": "Example title",
-        "text": "Example text",
-        "image": { "url": "https://example.com/image.png", "size": 128 },
-        "footer": { "text": "Example footer text", "url": "https://example.com/footer" },
-        "label": { "text": "Example label text", "url": "https://example.com/label" },
-    }
+# @st.cache_data()
+# def get_promotion():
+#     # replace with your real promotion loading
+#     return {
+#         "url": "https://example.com",
+#         "title": "Example title",
+#         "text": "Example text",
+#         "image": { "url": "https://example.com/image.png", "size": 128 },
+#         "footer": { "text": "Example footer text", "url": "https://example.com/footer" },
+#         "label": { "text": "Example label text", "url": "https://example.com/label" },
+#     }
 
-data = get_data()
-promotion = get_promotion()
+# data = get_data()
+# promotion = get_promotion()
 
-# extract the endpoint from the query string
-endpoint = st.experimental_get_query_params().get("endpoint", [""])[0]
+# # extract the endpoint from the query string
+# endpoint = st.experimental_get_query_params().get("endpoint", [""])[0]
 
-if endpoint == "config":
-    # Write the data as a JSON response
-    st.write(data)
-elif endpoint == "p":
-    # Write the promotion response
-    st.write(promotion)
-else:
-    # rest of your Streamlit app goes here
-    # replace with your current application code
-    st.write("Welcome to PinExt!")
+# if endpoint == "config":
+#     # Write the data as a JSON response
+#     st.write(data)
+# elif endpoint == "p":
+#     # Write the promotion response
+#     st.write(promotion)
+# else:
+#     # rest of your Streamlit app goes here
+#     # replace with your current application code
+#     st.write("Welcome to PinExt!")
 
 def img_to_data_url(path):
     with open(path, "rb") as image_file:
@@ -183,6 +209,7 @@ def render_styling(icon_size):
 
 
 def render_app_contents():
+
     # App Contents
     st.markdown("<h1 style='text-align: center; color: black;'>Made for all chrome users</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: black;'>Simple. Effortless. Accurate.</h3>", unsafe_allow_html=True)
