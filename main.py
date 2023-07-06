@@ -238,9 +238,9 @@ def render_faq():
         </style>
     """
     st.markdown(expander_style, unsafe_allow_html=True)
-    with st.expander("Is PinEx powered by?"):
-        st.markdown("<p class='expander-content'>PinEx is a Chrome extension built using TypeScript and powered by ChatGPT.</p>", unsafe_allow_html=True)
-    with st.expander("Is PinEx free to use?"):
+    with st.expander("What technology is PinEx powered by?"):
+        st.markdown("<p class='expander-content'>PinEx is built using Streamlit and powered by J2-Light from AI21 Labs.</p>", unsafe_allow_html=True)
+    with st.expander("Is PinExt free to use?"):
         st.markdown("<p class='expander-content'>Is PinEx free to use?</p>", unsafe_allow_html=True)
         st.write("PinEx extension is completely free to use.")
 
