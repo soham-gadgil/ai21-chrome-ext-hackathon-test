@@ -1,3 +1,5 @@
 ai21
 streamlit
 python-dotenv
+google
+beautifulsoup4
