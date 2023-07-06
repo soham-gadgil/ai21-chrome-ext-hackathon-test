@@ -1,6 +1,6 @@
 import { getExtensionVersion } from './utils'
 
-const API_HOST = 'https://pinext.streamlit.app/'
+const API_HOST = 'https://pinext.streamlit.app'
 
 export interface PromotionResponse {
   url: string
