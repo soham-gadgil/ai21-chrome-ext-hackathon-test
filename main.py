@@ -175,26 +175,15 @@ def add_bg_from_local(image_file):
         """,
         unsafe_allow_html=True
     )
-
-
 def main():
-    # Load the image
-    image = Image.open("./images/logo.png")
-    # Resize the image
-    icon_size = (128, 64)
-    resized_image = image.resize(icon_size)
-    # CSS styling to position the image in the top-left corner and adjust its size
-    render_styling(icon_size)
-    # Display the image as an icon in the top-left corner
-    st.image(resized_image, use_column_width=False)
-    # Rest of your Streamlit app code goes here
+    render_styling()
+    render_logo()
     render_app_contents()
+    add_background()
 
-    add_bg_from_local('./images/bg3.jpg')
-
-
-def render_styling(icon_size):
+def render_styling():
     # CSS Styling for icon and webpage
+    icon_size = (128, 64)
     st.markdown(f"""
         <style>
         .icon {{
@@ -207,31 +196,24 @@ def render_styling(icon_size):
         </style>
         """, unsafe_allow_html=True)
 
+def render_logo():
+    # Load and resize the logo image
+    image = Image.open("./images/logo.png")
+    icon_size = (128, 64)
+    resized_image = image.resize(icon_size)
+    # Display the image as an icon in the top-left corner
+    st.image(resized_image, use_column_width=False, output_format="PNG")
 
 def render_app_contents():
-
     # App Contents
     st.markdown("<h1 style='text-align: center; color: black;'>Made for all chrome users</h1>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: center; color: black;'>Simple. Effortless. Accurate.</h3>", unsafe_allow_html=True)
-    
-    # # Create a container to hold the buttons
-    # col1, col2, col3, col4 = st.columns(4)
-    # demo_button = button_markdown("Demo", "#")
-    # with col2:
-    #     st.markdown(demo_button, unsafe_allow_html=True)
 
-    # github_button = button_markdown("Github", "https://github.com/cnm13ryan/ai21-chrome-ext-hackathon-test", "./images/github-g9336db1b6_1280.png")
-    # with col3:
-    #     st.markdown(github_button, unsafe_allow_html=True)
-
-    # Rest of the content
     render_remaining_content()
 
     # Add chatbot demo section
     st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>CHATBOT DEMO</h3>", unsafe_allow_html=True)
     demo() # Call the chatbot function here
-
-
 
 def render_remaining_content():
     st.markdown("<h3 style='text-align: left; color: black;'>How does PinEx work?</h3>", unsafe_allow_html=True)
@@ -240,7 +222,6 @@ def render_remaining_content():
     st.video("testvideo.mp4")
     st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>FAQs</h3>", unsafe_allow_html=True)
     render_faq()
-
 
 def render_faq():
     expander_style = """
@@ -262,6 +243,10 @@ def render_faq():
         st.markdown("<p class='expander-content'>Is PinEx free to use?</p>", unsafe_allow_html=True)
         st.write("PinEx extension is completely free to use.")
 
+def add_background():
+    # bg_image = Image.open('./images/bg3.jpg')
+    # st.image(bg_image, use_column_width=True)
+    add_bg_from_local('./images/bg3.jpg')
 
 if __name__ == "__main__":
     main()
