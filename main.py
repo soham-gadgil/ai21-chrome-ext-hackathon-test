@@ -73,7 +73,7 @@ def generate_extension_list(problem_desc: str) -> None:
     results = []
     for name in extension_names:
         prompt = f"Describe the chrome extension that has the following name.\nName: {name}\n Answer: "
-        ext_desc = execute_lmm_call("j2-grande-instruct", prompt, 0.5, 1, 256, 10)
+        ext_desc = execute_lmm_call("j2-light", prompt, 0.5, 1, 256, 10)
         ext_link = search_links(name)
         results.append([name, ext_desc, ext_link])
 
