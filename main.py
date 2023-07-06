@@ -213,12 +213,12 @@ def render_app_contents():
     render_remaining_content()
 
     # Add chatbot demo section
-    st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>CHATBOT DEMO</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>PinEx DEMO (chat bot)</h3>", unsafe_allow_html=True)
     demo() # Call the chatbot function here
 
 def render_remaining_content():
     st.markdown("<h3 style='text-align: left; color: black;'>How does PinEx work?</h3>", unsafe_allow_html=True)
-    st.markdown("<subh3 style='text-align: left; color: black;'>Simply describe the problem you're trying to solve in the chatbox, and let PinEx work its magic. PinEx will analyze your needs and match you with the most efficient Chrome extension available in the store.</subh3>", unsafe_allow_html=True)
+    st.markdown("<subh3 style='text-align: left; color: black;'>Describe the problem you're trying to solve in the chatbox, and let PinEx do its work to fetch you the most relevant Chrome extension available in the store.</subh3>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>DEMO</h3>", unsafe_allow_html=True)
     st.video("testvideo.mp4")
     st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>FAQs</h3>", unsafe_allow_html=True)
@@ -238,9 +238,9 @@ def render_faq():
         </style>
     """
     st.markdown(expander_style, unsafe_allow_html=True)
-    with st.expander("Is PinEx powered by?"):
-        st.markdown("<p class='expander-content'>PinEx is a Chrome extension built using TypeScript and powered by ChatGPT.</p>", unsafe_allow_html=True)
-    with st.expander("Is PinEx free to use?"):
+    with st.expander("What technology is PinEx powered by?"):
+        st.markdown("<p class='expander-content'>PinEx is built using Streamlit and powered by J2-Light from AI21 Labs.</p>", unsafe_allow_html=True)
+    with st.expander("Is PinExt free to use?"):
         st.markdown("<p class='expander-content'>Is PinEx free to use?</p>", unsafe_allow_html=True)
         st.write("PinEx extension is completely free to use.")
 
