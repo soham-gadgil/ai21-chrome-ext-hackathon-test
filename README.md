@@ -1,23 +1,29 @@
 # PinEx 📌
 
-A chrome extension that find chrome extension for you! Try it out:
+Simple. Effortless. Accurate.
+
+PinEx is built using Streamlit and powered by J2-Light from AI21 Labs. It is a chrome extention that help users to find the chrome extention that best match their need. 
 
 👉 https://pinext.streamlit.app/
 
+
 ## Usage 💬
-In the PinEx chatbot, enter your API. 
+To use PinEx, follow these steps:
 
-Then, enter what you are looking for in a chrome extension, including the problem you are facing and how you want the chrome extension to help you. 
+Enter your API key in the PinEx chat box.
+Describe what you are looking for in a Chrome extension. Include the problem you are facing and how you want the Chrome extension to assist you.
 
-Send your message into the chatbox. PinEx will  
-- Provide a list of chrome extension that would be relevant to help the users to solve their problem.
-- Summarize the workings of the tool.
-- Provide the links to the Chrome extensions.
+PinEx will analyze your input and 
+- Provide a list of chrome extension that would be relevant to help the users to solve their problem
+- Summarize the workings of the tool
+- Provide the links to the Chrome extensions
 
 
 ## Future Development 👣
 - Provide a logo of the chrome extension in the chatbot
 - Allow users to test out the tool in the chat box window via API
+- Detect the browser 
+- Generate the link directly to the appropriate extension page
 
 ## Collaborators
 🧒cnm13ryan
