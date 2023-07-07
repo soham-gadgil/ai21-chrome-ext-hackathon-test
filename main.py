@@ -169,6 +169,14 @@ def render_styling():
             top: 10px;
             left: 20px;
         }}
+        body {{
+            background-color: #ffffff; /* Fallback color */
+            background-color: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
+        }}
+        h1, h3, p {{
+            color: #000000; /* Fallback color */
+            color: rgba(0, 0, 0, 0.9); /* Black with 90% opacity */
+        }}
         </style>
         """, unsafe_allow_html=True)
 
