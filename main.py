@@ -203,7 +203,7 @@ def render_remaining_content():
     st.markdown("<h3 style='text-align: left; color: black;'>How does PinEx work?</h3>", unsafe_allow_html=True)
     st.markdown("<subh3 style='text-align: left; color: black;'>Describe the problem you're trying to solve in the chatbox, and let PinEx do its work to fetch you the most relevant Chrome extension available in the store.</subh3>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>DEMO</h3>", unsafe_allow_html=True)
-    st.video("testvideo.mp4")
+    st.video("Demo.mov")
     st.markdown("<h3 style='text-align: left; color: #0d0d0d;'>FAQs</h3>", unsafe_allow_html=True)
     render_faq()
 
