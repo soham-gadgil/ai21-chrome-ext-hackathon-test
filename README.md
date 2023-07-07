@@ -1,24 +1,33 @@
-# PinEx
+# PinEx 📌
 
-A chrome extension that find chrome extension for you!
-
-## Try out PinEx
+A chrome extension that find chrome extension for you! Try it out:
 
 👉 https://pinext.streamlit.app/
 
-## Usage
+## Usage 💬
 In the PinEx chatbot, enter your API. 
 
-Then, enter what you are looking for in a chrome extension, including the problem you are facing and how you want the chrome extension to help you. Then, PinEx will  
+Then, enter what you are looking for in a chrome extension, including the problem you are facing and how you want the chrome extension to help you. 
+
+Send your message into the chatbox. PinEx will  
 - Provide a list of chrome extension that would be relevant to help the users to solve their problem.
 - Summarize the workings of the tool.
 - Provide the links to the Chrome extensions.
 
 
-## Future Development
+## Future Development 👣
 - Provide a logo of the chrome extension in the chatbot
 - Allow users to test out the tool in the chat box window via API
 
+## Collaborators
+🧒cnm13ryan
+https://github.com/cnm13ryan
+
+👦Soham Gadgeli
+https://github.com/soham-gadgil
+
+👩Hsuan 1029
+https://github.com/Hsuan1029
 
 ## License
 
