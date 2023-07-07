@@ -1,49 +1,42 @@
 # PinEx
-The repository for our submission for the ai21 hackathon for developing extensions using LLMs
 
+A chrome extension that find chrome extension for you!
 
-## TEST README - will be changed later ##
-Python boilerplate for AI21 Labs generate API ready to deploy on Streamlit. Visit our AI21 Labs page for more starters, tutorials, hackathons and projects built on AI21 Labs API.
+## Visit our webpage to try out PinEx
 
-## How to use AI21 Labs starter
+👉 https://pinext.streamlit.app/
 
-This is a starter project that will help you getting started with AI21 Labs API in a few minutes.
+## Usage
+In the PinEx chatbot, enter what you are looking for in a chrome extension, including the problem you are facing and how you want the chrome extension to help you. Then, PinEx will  
+- Provide a list of chrome extension that would be relevant to help the users to solve their problem.
+- Summarize the workings of the tool.
+- Provide the links to the Chrome extensions.
 
-## Clone repo
+## Future Development
+- Provide a logo of the chrome extension in the chatbot
+- Allow users to test out the tool in the chat box window via API
+  
 
-```
-git clone https://github.com/soham-gadgil/ai21-chrome-ext-hackathon-test.git
-```
+## License
 
-## change into folder
+MIT License
 
-```
-cd ai21-chrome-ext-hackathon-test
-```
+Copyright (c) 2023 soham-gadgil
 
-## Create virtual environment
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-```
-python -m venv venv
-```
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-## Activate virtual environment
-
-```
-source venv/bin/activate
-```
-
-## Install dependencies
-
-```
-pip install -r requirements.txt
-```
-
-## Run the Application
-
-```
-streamlit run main.py
-```
-
-## Relevant links
-
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
