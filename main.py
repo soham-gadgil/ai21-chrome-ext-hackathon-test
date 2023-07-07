@@ -119,40 +119,6 @@ def demo():
             st.session_state.messages.append({"role": "assistant", "content": response})
 
 
-# @st.cache_data()
-# def get_data():
-#     # replace with your real data loading
-#     return {"AI21_model_names": ["j2-light", "j2-mid", "j2-ultra"]}
-
-# @st.cache_data()
-# def get_promotion():
-#     # replace with your real promotion loading
-#     return {
-#         "url": "https://example.com",
-#         "title": "Example title",
-#         "text": "Example text",
-#         "image": { "url": "https://example.com/image.png", "size": 128 },
-#         "footer": { "text": "Example footer text", "url": "https://example.com/footer" },
-#         "label": { "text": "Example label text", "url": "https://example.com/label" },
-#     }
-
-# data = get_data()
-# promotion = get_promotion()
-
-# # extract the endpoint from the query string
-# endpoint = st.experimental_get_query_params().get("endpoint", [""])[0]
-
-# if endpoint == "config":
-#     # Write the data as a JSON response
-#     st.write(data)
-# elif endpoint == "p":
-#     # Write the promotion response
-#     st.write(promotion)
-# else:
-#     # rest of your Streamlit app goes here
-#     # replace with your current application code
-#     st.write("Welcome to PinExt!")
-
 def img_to_data_url(path):
     with open(path, "rb") as image_file:
         encoded_string = base64.b64encode(image_file.read()).decode()
@@ -202,6 +168,14 @@ def render_styling():
             position: absolute;
             top: 10px;
             left: 20px;
+        }}
+        body {{
+            background-color: #ffffff; /* Fallback color */
+            background-color: rgba(255, 255, 255, 0.5); /* White with 50% opacity */
+        }}
+        h1, h3, p {{
+            color: #000000; /* Fallback color */
+            color: rgba(0, 0, 0, 0.9); /* Black with 90% opacity */
         }}
         </style>
         """, unsafe_allow_html=True)
